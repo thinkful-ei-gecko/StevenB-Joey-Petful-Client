@@ -19,15 +19,19 @@ export class AnimalProvider extends React.Component {
         }
         
         componentDidMount (){
-         this.setState({catsQ: this.fetchCats()})
-         this.setState({dogsQ: this.fetchDogs()})
-        
+          this.setState({ castQ: null })
+          this.setState({ dogsQ: null })
+          this.setState({ catsQ: this.fetchCats() })
+          this.setState({ dogsQ: this.fetchDogs() })
         }
+
         fetchCats=()=>{
-            fetch(`${REACT_APP_API}/cat/adopt`)
+            fetch(`${REACT_APP_API}/cat/adopt`, {
+              method: 'GET'
+            })
               .then(res => res.json())
               .then(res => {
-                console.log(res)
+                console.log(res.length)
                 this.setState({
                   catsQ: res
                 })
@@ -35,10 +39,12 @@ export class AnimalProvider extends React.Component {
               
           }
         fetchDogs=()=>{
-            fetch(`${REACT_APP_API}/dog/adopt`)
+            fetch(`${REACT_APP_API}/dog/adopt`, {
+              method: 'GET'
+            })
               .then(res => res.json())
               .then(res => {
-                console.log(res)
+                console.log(res.length)
                 this.setState({
                   dogsQ: res
                 })
@@ -47,38 +53,33 @@ export class AnimalProvider extends React.Component {
           }
         
         adoptDog=()=>{
-            let dQ = this.state.dogsQ;
+            /* let dQ = this.state.dogsQ;
             
             this.setState({
               dogsQ: dQ
-            });
+            }); */
             fetch(`${REACT_APP_API}/dog/adopt`,{
               method: 'DELETE'
             })
-            .then(res=>{
-              if(res.ok) {
+            .then( () => {
                 console.log('Dog Adopted by You')        
-              }
             })
             .catch(err=>{
               console.log('Error!', err);
             })
           }
           adoptCat=()=>{
-            let cQ = this.state.catsQue;
-            cQ[0].adopter = "Thinkful";
+            /* let cQ = this.state.catsQue;
+            // cQ[0].adopter = "Thinkful";
             this.setState({
               catsQ: cQ
-            });
+            }); */
             fetch(`${REACT_APP_API}/cat/adopt`,{
               method: 'DELETE'
             })
-            .then(res=>{
-              if(res.ok) {
-                console.log('Cat Adopted by Thinkful Student')        
-              }
+            .then( () => {
+                console.log('Cat Adopted by Someone')
             })
-          
             .catch(err=>{
               console.log('Error!', err);
             })

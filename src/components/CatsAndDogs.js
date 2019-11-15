@@ -42,7 +42,7 @@ export default class CatsAndDogs extends Component{
       }
     renderCats =()=>{
   
-        if(this.context.catsQ===null){
+        if(!this.context.catsQ){
             return (
                 <h3> Surfing our databases interwebs in search of your future feline companion </h3>
             )} else if(!this.context.catsQ.length){
@@ -97,7 +97,7 @@ export default class CatsAndDogs extends Component{
     }
     renderDogs =()=>{
         
-            if(this.context.dogsQ===null){
+            if(!this.context.dogsQ){
                 return (
                     <h3> Surfing our databases interwebs in search of your future canine companion </h3>
                 )} else if(!this.context.dogsQ.length){

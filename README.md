@@ -11,3 +11,6 @@
 ## Server Github
 
 https://github.com/thinkful-ei-gecko/StevenB-Joey-Petful-Server
+
+### Technologies Used
+React, Express, Node

@@ -13,7 +13,7 @@ export default class CatsAndDogs extends Component{
     catsLeft=()=>{
         if(this.state.catIndex > 0) {
           this.setState({
-            idx: this.state.catIndex-1
+            catIndex: this.state.catIndex-1
           })
         }
       }
@@ -60,9 +60,9 @@ export default class CatsAndDogs extends Component{
               <header>
                 
                 <h2 className="animal-name">
-                  <i className="left" onClick={this.catsLeft}/>
+                  <i className="left" onClick={this.catLeft}/>
                   {cat.name}
-                  <i className="right" onClick={this.catsRight} />
+                  <i className="right" onClick={this.catRight} />
                 </h2>
                 <img src={cat.imageURL} alt={cat.imageDescription} />
               </header>

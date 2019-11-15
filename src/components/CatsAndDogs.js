@@ -7,7 +7,7 @@ export default class CatsAndDogs extends Component{
         dogIndex: 0,
         catLength: (this.context.catsQ!==null)?this.context.catsQ.length:1,
         dogLength: (this.context.dogsQ!==null)?this.context.dogsQ.length:1,
-        adopters: [], 
+        usersQ: this.context.usersQ
     }
     static contextType = AnimalContext;
     catsLeft=()=>{
@@ -81,7 +81,7 @@ export default class CatsAndDogs extends Component{
                 <button 
                   className="adopter"
                   type="button"
-                  disabled={(this.state.adopters[0]?true:false)}
+                  disabled={(this.state.usersQ[0]?true:false)}
                   onClick={() => this.context.adoptCat()}
                 >
                   {
@@ -136,7 +136,7 @@ export default class CatsAndDogs extends Component{
                     <button 
                       className="adopter"
                       type="button"
-                      disabled={(this.state.adopters[0]?true:false)}
+                      disabled={(this.state.usersQ[0]?true:false)}
                       onClick={() => this.context.adoptDog()}
                     >
                       {

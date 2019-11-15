@@ -17,6 +17,10 @@ export class AnimalProvider extends React.Component {
           catsQ: null,
           dogsQ: null
         }
+        componentDidMount (){
+         this.setState({catsQ: this.fetchCats()})
+         this.setState({dogsQ: this.fetchDogs()})
+        }
         fetchCats=()=>{
             fetch(`${api}/cat/adopt`)
               .then(res => res.json())

@@ -97,9 +97,9 @@ export default class CatsAndDogs extends Component{
     }
     renderDogs =()=>{
         
-            if(this.context.dogssQ===null){
+            if(this.context.dogsQ===null){
                 return (
-                    <h3> Surfing our databases interwebs in search of your future feline companion </h3>
+                    <h3> Surfing our databases interwebs in search of your future canine companion </h3>
                 )} else if(!this.context.dogsQ.length){
                     return (
                         <div className="allAdopted">

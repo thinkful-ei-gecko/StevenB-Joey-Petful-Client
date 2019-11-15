@@ -19,8 +19,6 @@ export class AnimalProvider extends React.Component {
         }
         
         componentDidMount (){
-          this.setState({ castQ: null })
-          this.setState({ dogsQ: null })
           this.setState({ catsQ: this.fetchCats() })
           this.setState({ dogsQ: this.fetchDogs() })
         }
@@ -62,7 +60,7 @@ export class AnimalProvider extends React.Component {
               method: 'DELETE'
             })
             .then( () => {
-                console.log('Dog Adopted by You')        
+                this.fetchDogs();       
             })
             .catch(err=>{
               console.log('Error!', err);
@@ -78,7 +76,7 @@ export class AnimalProvider extends React.Component {
               method: 'DELETE'
             })
             .then( () => {
-                console.log('Cat Adopted by Someone')
+                this.fetchCats();
             })
             .catch(err=>{
               console.log('Error!', err);

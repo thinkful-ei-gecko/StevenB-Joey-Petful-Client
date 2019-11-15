@@ -24,7 +24,9 @@ export default class CatsAndDogs extends Component{
           {
             name: 'You'
           }
-        ]
+        ],
+      adoptedDogs: [],
+      adoptedCats: []
     }
     static contextType = AnimalContext;
 
@@ -32,6 +34,19 @@ export default class CatsAndDogs extends Component{
       setInterval(() => {
         this.userPosition()
       }, 10000);
+    }
+    handleCatClick(){
+      this.setState({
+        adoptedCats: [...this.state.adoptedCats, this.context.catsQ[0]]
+       })
+      this.context.adoptCat()
+    }
+    handleDogClick(){
+      this.setState({
+       adoptedDogs: [...this.state.adoptedDogs, this.context.dogsQ[0]]
+      })
+      
+      this.context.adoptDog()
     }
 
     userPosition() {
@@ -68,12 +83,26 @@ export default class CatsAndDogs extends Component{
       }
     
       dogsRight=()=>{
-        if(this.state.index < this.context.dogsQ.length-1) {
+        if(this.state.dogIndex < this.context.dogsQ.length-1) {
           this.setState({
             dogIndex: this.state.dogIndex+1
           })
         }
       }
+    renderAdoptedCats =()=>{
+      if(!this.state.adoptedCats.length){
+        return <h3>No adopted Cats! You could be first :D</h3>
+      }else{
+        return <div>{this.state.adoptedCats}</div>
+      }
+    }
+    renderAdoptedDogs =()=>{
+      if(!this.state.adoptedDogs.length){
+        return <h3>No adopted Dogs! You could be first :D</h3>
+      }else{
+        return <div>{this.state.adoptedDogs}</div>
+      }
+    }
     renderCats =()=>{
   
         if(!this.context.catsQ){
@@ -94,9 +123,9 @@ export default class CatsAndDogs extends Component{
               <header>
                 
                 <h2 className="animal-name">
-                  <i className="left" onClick={this.catLeft}/>
-                  {cat.name}
-                  <i className="right" onClick={this.catRight} />
+                {/* <button className="left" onClick={this.dogLeft}>left</button> */}
+                      {cat.name}
+                      {/* <button className="right" onClick={this.dogRight}>right</button> */}
                 </h2>
                 <img src={cat.imageURL} alt={cat.imageDescription} />
               </header>
@@ -116,7 +145,7 @@ export default class CatsAndDogs extends Component{
                   className="adopter"
                   type="button"
                   disabled={this.state.usersQ[0].name !== 'You'}
-                  onClick={() => this.context.adoptCat()}
+                  onClick={() => this.handleCatClick()}
                 >
                   {
                     `Adoption in Process by: ${this.state.usersQ[0].name}`
@@ -149,9 +178,9 @@ export default class CatsAndDogs extends Component{
                   <header>
                     
                     <h2 className="animal-name">
-                      <i className="left" onClick={this.dogLeft}/>
+                      {/* <button className="left" onClick={this.dogLeft}>left</button> */}
                       {dog.name}
-                      <i className="right" onClick={this.dogRight} />
+                      {/* <button className="right" onClick={this.dogRight}>right</button> */}
                     </h2>
                     <img src={dog.imageURL} alt={dog.imageDescription} />
                   </header>
@@ -171,7 +200,7 @@ export default class CatsAndDogs extends Component{
                       className="adopter"
                       type="button"
                       disabled={this.state.usersQ[0].name !== 'You'}
-                      onClick={() => this.context.adoptDog()}
+                      onClick={() => this.handleDogClick()}
                     >
                       {
                         `Adoption in Process by: ${this.state.usersQ[0].name}`
@@ -188,6 +217,8 @@ export default class CatsAndDogs extends Component{
             let cat = <div>{this.renderCats()}</div>
             let dog = <div>{this.renderDogs()}</div>
             let users = this.state.usersQ.map(arr => arr.name + ', ')
+            let adoptedCats = <div>{this.renderAdoptedCats()}</div>
+            let adoptedDogs =<div>{this.renderAdoptedDogs()}</div>
             return(
                 <>
                 <h3>Adopters order: {users}</h3>
@@ -197,6 +228,10 @@ export default class CatsAndDogs extends Component{
                 <div className='Dog'>
                     {dog}
 
+                </div>
+                <div className ='AdoptedPets'>
+                  {adoptedCats}
+                  {adoptedDogs}
                 </div>
                 </>
             )

@@ -72,9 +72,11 @@ export class AnimalProvider extends React.Component {
                 console.log('Cat Adopted by Thinkful Student')        
               }
             })
+          
             .catch(err=>{
               console.log('Error!', err);
             })
+          }
             render(){
                 const value = {
                     dogsQ: this.state.dogsQ,
@@ -86,12 +88,11 @@ export class AnimalProvider extends React.Component {
 
                 }
                 return (
-                    <animalContext.Provider value ={value}>
+                    <AnimalContext.Provider value ={value}>
                         {this.props.children}
-                    </animalContext.Provider>
+                    </AnimalContext.Provider>
                 )
             }
           }
         
       
-}

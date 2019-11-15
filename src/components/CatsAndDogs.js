@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AnimalContext } from '../Context/context';
+import Queue from './Queue';
 
 export default class CatsAndDogs extends Component{
     state = {
@@ -41,7 +42,7 @@ export default class CatsAndDogs extends Component{
         }
       }
     renderCats =()=>{
-    render(){
+    
         if(this.context.catsQ===null){
             return (
                 <h3> Surfing our databases interwebs in search of your future feline companion </h3>
@@ -92,12 +93,12 @@ export default class CatsAndDogs extends Component{
               <Queue queue={this.context.catsQ} />
             </section>
           )
-    }
+    
 
         }
     }
     renderDogs =()=>{
-        render(){
+        
             if(this.context.dogssQ===null){
                 return (
                     <h3> Surfing our databases interwebs in search of your future feline companion </h3>
@@ -148,7 +149,7 @@ export default class CatsAndDogs extends Component{
                   <Queue queue={this.context.dogsQ} />
                 </section>
               )
-        }
+        
     
             }
         }

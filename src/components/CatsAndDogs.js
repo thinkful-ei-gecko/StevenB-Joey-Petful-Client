@@ -41,7 +41,7 @@ export default class CatsAndDogs extends Component{
         }
       }
     renderCats =()=>{
-    
+  
         if(this.context.catsQ===null){
             return (
                 <h3> Surfing our databases interwebs in search of your future feline companion </h3>
@@ -115,9 +115,9 @@ export default class CatsAndDogs extends Component{
                   <header>
                     
                     <h2 className="animal-name">
-                      <i className="left" onClick={this.left}/>
+                      <i className="left" onClick={this.dogLeft}/>
                       {dog.name}
-                      <i className="right" onClick={this.right} />
+                      <i className="right" onClick={this.dogRight} />
                     </h2>
                     <img src={dog.imageURL} alt={dog.imageDescription} />
                   </header>

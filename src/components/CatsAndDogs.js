@@ -60,9 +60,9 @@ export default class CatsAndDogs extends Component{
               <header>
                 
                 <h2 className="animal-name">
-                  <i className="left" onClick={this.left}/>
+                  <i className="left" onClick={this.catsLeft}/>
                   {cat.name}
-                  <i className="right" onClick={this.right} />
+                  <i className="right" onClick={this.catsRight} />
                 </h2>
                 <img src={cat.imageURL} alt={cat.imageDescription} />
               </header>

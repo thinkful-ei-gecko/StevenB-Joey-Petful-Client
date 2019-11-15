@@ -1,7 +1,7 @@
 import React from 'react';
 import { api } from '../config';
 
-const AnimalContext = React.createContext({
+export const AnimalContext = React.createContext({
  catsQ: null,
  dogsQ: null,
  adoptCat: () => {},
@@ -10,7 +10,6 @@ const AnimalContext = React.createContext({
  fetchCats: () => {},
 
 })
-export default AnimalContext
 
 export class AnimalProvider extends React.Component {
     state = {

@@ -1,20 +1,18 @@
-module.exports = {
- 'people': [
+module.exports =
+[
   {
-    position: 1,
     name: 'Steven'
   },
   {
-    position: 2,
     name: 'Joey'
   },
   {
-    position: 3,
     name: 'Anna'
   },
   {
-    position: 4,
     name: 'Dave'
+  },
+  {
+    name: 'You'
   }
- ]
-}
+]

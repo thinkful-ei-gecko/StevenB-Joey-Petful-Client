@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AnimalContext } from '../Context/context';
+import { throwStatement } from '@babel/types';
 
 export default class CatsAndDogs extends Component{
     state = {
@@ -7,9 +8,42 @@ export default class CatsAndDogs extends Component{
         dogIndex: 0,
         catLength: (this.context.catsQ!==null)?this.context.catsQ.length:1,
         dogLength: (this.context.dogsQ!==null)?this.context.dogsQ.length:1,
-        usersQ: this.context.usersQ
+        usersQ: [
+          {
+            name: 'Steven'
+          },
+          {
+            name: 'Joey'
+          },
+          {
+            name: 'Anna'
+          },
+          {
+            name: 'Dave'
+          },
+          {
+            name: 'You'
+          }
+        ]
     }
     static contextType = AnimalContext;
+
+    componentDidMount() {
+      setInterval(() => {
+        this.userPosition()
+      }, 10000);
+    }
+
+    userPosition() {
+      if (this.state.usersQ.length > 1) {
+        let newUserQ = this.state.usersQ.slice(1, this.state.usersQ.length);
+        this.setState({
+          usersQ: newUserQ
+        })
+      }
+      return;
+    }
+
     catsLeft=()=>{
         if(this.state.catIndex > 0) {
           this.setState({
@@ -81,11 +115,11 @@ export default class CatsAndDogs extends Component{
                 <button 
                   className="adopter"
                   type="button"
-                  disabled={(this.state.usersQ[0]?true:false)}
+                  disabled={this.state.usersQ[0].name !== 'You'}
                   onClick={() => this.context.adoptCat()}
                 >
                   {
-                    `Adoption in Process by: ${this.state.adopters[0]}`
+                    `Adoption in Process by: ${this.state.usersQ[0].name}`
                   }
                 </button>
               </main>
@@ -136,11 +170,11 @@ export default class CatsAndDogs extends Component{
                     <button 
                       className="adopter"
                       type="button"
-                      disabled={(this.state.usersQ[0]?true:false)}
+                      disabled={this.state.usersQ[0].name !== 'You'}
                       onClick={() => this.context.adoptDog()}
                     >
                       {
-                        `Adoption in Process by: ${this.state.adopters[0]}`
+                        `Adoption in Process by: ${this.state.usersQ[0].name}`
                       }
                     </button>
                   </main>
@@ -153,8 +187,10 @@ export default class CatsAndDogs extends Component{
         render(){
             let cat = <div>{this.renderCats()}</div>
             let dog = <div>{this.renderDogs()}</div>
+            let users = this.state.usersQ.map(arr => arr.name + ', ')
             return(
                 <>
+                <h3>Adopters order: {users}</h3>
                 <div className='Cat'>
                     {cat}
                 </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { REACT_APP_API } from '../config';
-import dummyQueue from '../Utils/dummyQueue';
 
 export const AnimalContext = React.createContext({
  catsQ: null,
@@ -15,9 +14,7 @@ export const AnimalContext = React.createContext({
 export class AnimalProvider extends React.Component {
     state = {
           catsQ: null,
-          dogsQ: null,
-          usersQ: dummyQueue.people
-          
+          dogsQ: null
         }
         
         componentDidMount (){
@@ -31,7 +28,6 @@ export class AnimalProvider extends React.Component {
             })
               .then(res => res.json())
               .then(res => {
-                console.log(res.length)
                 this.setState({
                   catsQ: res
                 })
@@ -44,7 +40,6 @@ export class AnimalProvider extends React.Component {
             })
               .then(res => res.json())
               .then(res => {
-                console.log(res.length)
                 this.setState({
                   dogsQ: res
                 })

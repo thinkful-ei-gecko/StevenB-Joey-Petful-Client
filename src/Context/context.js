@@ -1,5 +1,5 @@
 import React from 'react';
-import { api } from '../config';
+import { REACT_APP_API } from '../config';
 
 const AnimalContext = React.createContext({
  catsQ: null,
@@ -22,7 +22,7 @@ export class AnimalProvider extends React.Component {
          this.setState({dogsQ: this.fetchDogs()})
         }
         fetchCats=()=>{
-            fetch(`${api}/cat/adopt`)
+            fetch(`${REACT_APP_API}/cat/adopt`)
               .then(res => res.json())
               .then(res => {
                 this.setState({
@@ -31,7 +31,7 @@ export class AnimalProvider extends React.Component {
               })
           }
         fetchDogs=()=>{
-            fetch(`${api}/dog/adopt`)
+            fetch(`${REACT_APP_API}/dog/adopt`)
               .then(res => res.json())
               .then(res => {
                 this.setState({
@@ -46,7 +46,7 @@ export class AnimalProvider extends React.Component {
             this.setState({
               dogsQ: dQ
             });
-            fetch(`${api}/dog/adopt`,{
+            fetch(`${REACT_APP_API}/dog/adopt`,{
               method: 'DELETE'
             })
             .then(res=>{
@@ -64,7 +64,7 @@ export class AnimalProvider extends React.Component {
             this.setState({
               catsQ: cQ
             });
-            fetch(`${api}/cat/adopt`,{
+            fetch(`${REACT_APP_API}/cat/adopt`,{
               method: 'DELETE'
             })
             .then(res=>{

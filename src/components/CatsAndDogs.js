@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AnimalContext } from '../Context/context';
-import { throwStatement } from '@babel/types';
+import faker from 'faker';
 
 export default class CatsAndDogs extends Component{
     state = {
@@ -32,7 +32,8 @@ export default class CatsAndDogs extends Component{
 
     componentDidMount() {
       setInterval(() => {
-        this.userPosition()
+        this.userPosition();
+        this.newUser();
       }, 10000);
     }
     handleCatClick(){
@@ -47,6 +48,13 @@ export default class CatsAndDogs extends Component{
       })
       
       this.context.adoptDog()
+    }
+
+    newUser() {
+      let fakeName = faker.name.firstName();
+      this.setState({
+        usersQ: [ ...this.state.usersQ, { name: fakeName }]
+      })
     }
 
     userPosition() {
@@ -91,16 +99,18 @@ export default class CatsAndDogs extends Component{
       }
     renderAdoptedCats =()=>{
       if(!this.state.adoptedCats.length){
-        return <h3>No adopted Cats! You could be first :D</h3>
+        return <h5>No adopted Cats! You could be first :D</h5>
       }else{
-        return <div>{this.state.adoptedCats}</div>
+        let adoptedCat = this.state.adoptedCats.map( cat => cat.name + ' ' )
+        return <h5>{adoptedCat}</h5>
       }
     }
     renderAdoptedDogs =()=>{
       if(!this.state.adoptedDogs.length){
-        return <h3>No adopted Dogs! You could be first :D</h3>
+        return <h5>No adopted Dogs! You could be first :D</h5>
       }else{
-        return <div>{this.state.adoptedDogs}</div>
+        let adoptedDog = this.state.adoptedDogs.map( dog => dog.name + ' ' )
+        return <h5>{adoptedDog}</h5>
       }
     }
     renderCats =()=>{
@@ -230,6 +240,7 @@ export default class CatsAndDogs extends Component{
 
                 </div>
                 <div className ='AdoptedPets'>
+                  <h3>Adopted Pets:</h3>
                   {adoptedCats}
                   {adoptedDogs}
                 </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { AnimalContext } from '../Context/context';
-import Queue from './Queue';
 
 export default class CatsAndDogs extends Component{
     state = {
@@ -90,7 +89,6 @@ export default class CatsAndDogs extends Component{
                   }
                 </button>
               </main>
-              <Queue queue={this.context.catsQ} />
             </section>
           )
     
@@ -118,10 +116,10 @@ export default class CatsAndDogs extends Component{
                     
                     <h2 className="animal-name">
                       <i className="left" onClick={this.left}/>
-                      {cat.name}
+                      {dog.name}
                       <i className="right" onClick={this.right} />
                     </h2>
-                    <img src={cat.imageURL} alt={cat.imageDescription} />
+                    <img src={dog.imageURL} alt={dog.imageDescription} />
                   </header>
                   <main>
                     <h3>More about {dog.name}</h3>
@@ -146,11 +144,25 @@ export default class CatsAndDogs extends Component{
                       }
                     </button>
                   </main>
-                  <Queue queue={this.context.dogsQ} />
                 </section>
               )
         
     
             }
+        }
+        render(){
+            let cat = <div>{this.renderCats()}</div>
+            let dog = <div>{this.renderDogs()}</div>
+            return(
+                <>
+                <div className='Cat'>
+                    {cat}
+                </div>
+                <div className='Dog'>
+                    {dog}
+
+                </div>
+                </>
+            )
         }
 }

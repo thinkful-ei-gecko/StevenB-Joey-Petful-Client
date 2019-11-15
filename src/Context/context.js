@@ -18,7 +18,7 @@ export class AnimalProvider extends React.Component {
           dogsQ: null
         }
         fetchCats=()=>{
-            fetch(`${api}/cats/adopt`)
+            fetch(`${api}/cat/adopt`)
               .then(res => res.json())
               .then(res => {
                 this.setState({
@@ -27,7 +27,7 @@ export class AnimalProvider extends React.Component {
               })
           }
         fetchDogs=()=>{
-            fetch(`${api}/dogs/adopt`)
+            fetch(`${api}/dog/adopt`)
               .then(res => res.json())
               .then(res => {
                 this.setState({
@@ -42,7 +42,7 @@ export class AnimalProvider extends React.Component {
             this.setState({
               dogsQ: dQ
             });
-            fetch(`${api}/dogs/adopt`,{
+            fetch(`${api}/dog/adopt`,{
               method: 'DELETE'
             })
             .then(res=>{
@@ -60,7 +60,7 @@ export class AnimalProvider extends React.Component {
             this.setState({
               catsQ: cQ
             });
-            fetch(`${api}/cats/adopt`,{
+            fetch(`${api}/cat/adopt`,{
               method: 'DELETE'
             })
             .then(res=>{
